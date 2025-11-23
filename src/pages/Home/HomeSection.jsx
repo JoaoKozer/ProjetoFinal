@@ -6,16 +6,17 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import GroupIcon from "@mui/icons-material/Group";
 
-import RestaurantCard from "../components/RestaurantCard";
-import MapContainer from "../components/MapContainer";
-import { mockRestaurantes } from "../mocks/MockRestaurantes";
-import '../styles/HomeSection.css';
+import RestaurantCard from "../../components/RestaurantCard.jsx";
+import MapContainer from "../../components/MapContainer";
+import { mockRestaurantes } from "../../mocks/MockRestaurantes.js";
+import "../../styles/HomeSection.css";
+
 
 export default function HomeSection() {
     const [restaurants, setRestaurants] = useState([]);
     const [loading, setLoading] = useState(true);
     const [query, setQuery] = useState("");
-    const [showMap, setShowMap] = useState(false); // controla exibição do mapa
+    const [showMap, setShowMap] = useState(false); // controla exibição do mapa e cards
 
     // Inicializa com mock
     useEffect(() => {
@@ -28,7 +29,7 @@ export default function HomeSection() {
     );
 
     const handleSearch = () => {
-        setShowMap(true); // mostra o mapa após a busca
+        setShowMap(true); // mostra mapa e cards após a busca
     };
 
     return (
@@ -121,26 +122,37 @@ export default function HomeSection() {
                             gap: 2,
                             mt: 3,
                             alignItems: "flex-start",
+                            height: "80vh",
                         }}
                     >
-                        {/* Lista de restaurantes com scroll independente */}
-<Box className="restaurant-list">
-  {filtered.map(r => (
-      <RestaurantCard key={r.id} restaurant={r} />
-  ))}
-</Box>
-
-                        {/* Mapa fixo à direita */}
+                        {/* Lista de restaurantes e mapa só aparecem após buscar */}
                         {showMap && (
-                            <Box
-                                sx={{
-                                    width: { xs: "100%", md: "400px" },
-                                    position: { xs: "relative", md: "sticky" },
-                                    top: { md: "80px" },
-                                }}
-                            >
-                                <MapContainer show={showMap} restaurants={filtered} />
-                            </Box>
+                            <>
+                                <Box
+                                    className="restaurant-list"
+                                    sx={{
+                                        flex: 1,
+                                        overflowY: "auto",
+                                        pr: 2,
+                                    }}
+                                >
+                                    {filtered.map(r => (
+                                        <RestaurantCard key={r.id} restaurant={r} />
+                                    ))}
+                                </Box>
+
+                                <Box
+                                    className="map-wrapper"
+                                    sx={{
+                                        width: { xs: "100%", md: "400px" },
+                                        position: { xs: "relative", md: "sticky" },
+                                        top: { md: "80px" },
+                                        height: "100%",
+                                    }}
+                                >
+                                    <MapContainer show={showMap} restaurants={filtered} />
+                                </Box>
+                            </>
                         )}
                     </Box>
                 )}

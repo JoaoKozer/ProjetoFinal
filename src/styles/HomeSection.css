@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: flex-start; /* conteúdo começa do topo */
   align-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
   width: 100%;
   text-align: center;
   color: #fff;

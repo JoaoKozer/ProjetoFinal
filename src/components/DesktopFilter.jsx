@@ -1,18 +1,14 @@
-import { Box, Chip, IconButton, Select, MenuItem, Menu } from "@mui/material";
+import { Box, Chip, IconButton, Select, MenuItem } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useRef } from "react";
-import { Directions } from "@mui/icons-material";
 import "../styles/DesktopFilter.css";
 
-
-
-
 export default function DesktopFilter() {
-    const scrollRef = useRef(null)
-    {/** lista dos possvies */}
-    const categorias = [ 
+    const scrollRef = useRef(null);
+
+    const categorias = [
         "Italian",
         "Brunch",
         "Mexican",
@@ -22,67 +18,62 @@ export default function DesktopFilter() {
         "Japanese",
         "Birthdays",
         "Romantic",
-    ]
-        {/** tentei fazer uma rolagem dinamica só vai dar de saber se funcionou quando tiver mais opções nos fitros */}
+        "Burger",
+        "Vegan",
+        "Barbecue",
+        "Sushi",
+        "Fast Food",
+        "Healthy",
+        "Chinese",
+        "Desserts",
+        "Steakhouse",
+        "Coffee",
+        "Brazilian"
+    ];
+
     const scroll = (direction) => {
         if (!scrollRef.current) return;
         scrollRef.current.scrollBy({
             left: direction === "left" ? -200 : 200,
             behavior: "smooth",
         });
-    }
-    return(
-        <Box
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2,
-                padding: "1rem 0",
-                borderBottom: "1px solido #ddd"
-            }}
-        >
+    };
 
+    return (
+        <Box className="filter-container">
             <Select
-            defaultValue="filtros"
-            size="small"
-            sx={{ borderRadius: "20px", height: 36}}
+                defaultValue="filtros"
+                size="small"
+                className="filter-select"
             >
-                {/** O que tem no filtro principal */}
                 <MenuItem value="filtros">Filtros</MenuItem>
-                <MenuItem value="rating">Melhore avaliações</MenuItem>
+                <MenuItem value="rating">Melhores avaliações</MenuItem>
                 <MenuItem value="price">Preços</MenuItem>
+                <MenuItem value="distance">Distância</MenuItem>
+                <MenuItem value="open_now">Aberto agora</MenuItem>
             </Select>
 
-
-            <IconButton onClick={() => scroll("left")}>
+            <IconButton onClick={() => scroll("left")} className="scroll-btn">
                 <ArrowBackIosNewIcon fontSize="small" />
             </IconButton>
-                 {/** Percorre a lista de categorias disponivel // Backend*/}
-             <Box
+
+            <Box
                 ref={scrollRef}
-                sx={{
-                    display: "flex",
-                    gap: 1,
-                    overflowX: "auto",
-                    whiteSpace: "nowrap",
-                    flex: 1,
-                    paddingBottom: 0.5,
-                    "&::-webkit-scrollbar": { display: "none" },
-                }}
+                className="chips-scroll-area"
             >
                 {categorias.map((cat) => (
                     <Chip
                         key={cat}
                         label={cat}
-                        variant="outlined"
                         clickable
-                        sx={{ borderRadius: "20px" }}
+                        className="filter-chip"
                     />
                 ))}
             </Box>
-                        <IconButton onClick={() => scroll("right")}>
+
+            <IconButton onClick={() => scroll("right")} className="scroll-btn">
                 <ArrowForwardIosIcon fontSize="small" />
             </IconButton>
         </Box>
-    )
+    );
 }

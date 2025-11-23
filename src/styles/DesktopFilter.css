@@ -1,39 +1,60 @@
-/* Contêiner principal do filtro */
-.desktop-filter-container {
-    width: 100%;
-    padding: 10px 0;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+/* Container geral */
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e1e1e1;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 12px;
 }
 
-/* Select básico para destacar no layout */
-.desktop-filter-container select,
-.desktop-filter-select {
-    min-width: 120px;
+/* Select principal */
+.filter-select {
+  border-radius: 20px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  height: 36px;
 }
 
-/* Contêiner da lista horizontal de chips */
-.desktop-filter-chip-scroll {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 4px;
+/* Botões laterais de rolagem */
+.scroll-btn {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  transition: 0.3s ease;
 }
 
-/* Remover barra de rolagem */
-.desktop-filter-chip-scroll::-webkit-scrollbar {
-    display: none;
+.scroll-btn:hover {
+  background: rgba(240, 240, 240, 0.95);
 }
 
-/* Ajuste visual dos Chips */
-.desktop-filter-chip {
-    border-radius: 20px;
+/* Área rolável dos chips */
+.chips-scroll-area {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  flex: 1;
+  padding-bottom: 0.4rem;
+  scrollbar-width: none;
 }
 
-/* Botões de rolagem */
-.desktop-filter-arrow-btn {
-    padding: 4px;
+.chips-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+/* Chips */
+.filter-chip {
+  border-radius: 20px !important;
+  border-color: #c9c9c9 !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  transition: 0.3s ease;
+}
+
+.filter-chip:hover {
+  background: #ffffff !important;
+  border-color: #d32f2f !important;
+  color: #d32f2f !important;
 }
