@@ -1,38 +1,36 @@
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-import '../styles/Navbar.css';
+// Componente responsável pelo cabeçalho da aplicação
+// Contém título, busca e link para Minhas Reservas
 
-export default function Navbar() {
+import { AppBar, Toolbar, Typography, Box, TextField, IconButton, Button } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
 
-  return(
-    <AppBar position='fixed' elevation={1} className='navbar'>
-      {/** Com comportamentos do MUI abaixo vai o nome e a logo do restaurante */}
-      <Toolbar className='navbar-toolbar'>
-        <img src="" alt="logo-img" />
+export default function Header() {
+  return (
+    // Barra superior fixa
+    <AppBar position="sticky" color="primary">
+      <Toolbar>
+        {/* Título clicável que leva para a Home */}
+        <Typography
+          variant="h6"
+          component={Link}
+          to="/"
+          style={{ color: "white", textDecoration: "none", flexGrow: 1 }}
+        >
+          ReservaMesa
+        </Typography>
 
-        <Box className="navbar-logo">
-          <RestaurantMenuIcon color="" />
-          <Typography variant='h6' className='navbar-title'>
-            Restaurante do desespero
-          </Typography>
-
-
-      {/** Links de navegção da navbar do site, OBS: Está em texto mas se quiserem podem colocar icons/MUI fornece*/}
+        {/* Campo de busca (ainda não funcional, visual apenas) */}
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <TextField size="small" placeholder="Buscar restaurante" sx={{ bgcolor: "white", borderRadius: 1 }} />
+          <IconButton color="inherit"><SearchIcon /></IconButton>
         </Box>
-        <Box className="navbar-links">
-        <Button className="navbar-link" color="inherit">Home</Button>
-        <Button className="navbar-link" color="inherit">Restaurantes</Button>
-        <Button className="navbar-link" color="inherit">Contato</Button>
 
-
-      {/** Botão de reserva do Site*/}
-          <Button
-          variant='contained'
-          className='navbar-btn'
-          >Faça sua Reserva</Button>
-        </Box>
+        {/* Link para a página Minhas Reservas */}
+        <Button color="inherit" component={Link} to="/minhas-reservas" sx={{ ml: 2 }}>
+          Minhas Reservas
+        </Button>
       </Toolbar>
     </AppBar>
-
-  )
+  );
 }
