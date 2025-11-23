@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { Container, Box, TextField, Grid, CircularProgress } from "@mui/material";
-import RestaurantCard from "../components/RestaurantCard";
-import { getRestaurantes } from "../api/restauranteApi";
+import RestaurantCard from "../../components/RestaurantCard.jsx";
+import { getRestaurantes } from "../../api/restauranteApi.jsx";
 
 
 export default function Home() {
